@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_todo/components/tasktile.dart';
 import 'package:my_todo/todo_list.dart';
+import 'package:my_todo/components/bottom_navigationbar.dart';
 
 class TodoListPage extends StatelessWidget {
   const TodoListPage({super.key});
@@ -26,6 +27,9 @@ class TodoListPage extends StatelessWidget {
           },
           child: const Icon(Icons.add),
         ),
+        bottomNavigationBar: const CustomBottomNavigationBar(
+          currentIndex: 0,
+        )
     );
   }
 }
