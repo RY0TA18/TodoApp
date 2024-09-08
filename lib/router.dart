@@ -7,7 +7,7 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (BuildContext context, GoRouterState state) => const TodoListPage(),
+      builder: (BuildContext context, GoRouterState state) => TodoListPage(),
     ),
     GoRoute(
       path: '/addTodoPage',

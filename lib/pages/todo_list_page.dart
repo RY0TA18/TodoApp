@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_todo/todo_list.dart';
 
 class TodoListPage extends StatelessWidget {
   const TodoListPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +13,13 @@ class TodoListPage extends StatelessWidget {
         title: const Text('Todo List'),
       ),
       body: 
-        ListView(
-          children: const <Widget>[
-            ListTile(
-              title: Text('Buy milk'),
-            ),
-            ListTile(
-              title: Text('Buy eggs'),
-            ),
-            ListTile(
-              title: Text('Buy bread'),
-            ),
-          ],
+        ListView.builder(
+          itemCount: tasks.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(tasks[index]),
+            );
+          },
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
