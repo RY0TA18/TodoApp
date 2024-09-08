@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_todo/router.dart';
 
 void main() {
   runApp(const MyTodoApp());
@@ -11,18 +12,6 @@ class MyTodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = GoRouter(
-      routes: [
-        GoRoute(
-          path: '/',
-          builder: (BuildContext context, GoRouterState state) => const TodoListPage(),
-        ),
-        GoRoute(
-          path: '/addTodoPaAddTodoPage',
-          builder: (BuildContext context, GoRouterState state) => const AddTodoPage(),
-        ),
-      ],
-    );
 
     return MaterialApp.router(
       title: 'Flutter Demo',
