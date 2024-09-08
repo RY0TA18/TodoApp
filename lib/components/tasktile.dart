@@ -30,6 +30,12 @@ class TaskTile extends StatelessWidget {
                   },
                   child: const Text('閉じる'),
                 ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // ダイアログを閉じる
+                  },
+                  child: const Text('削除'),
+                ),
               ],
             );
           },
