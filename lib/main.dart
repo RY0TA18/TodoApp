@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const MyTodoApp());
@@ -10,12 +11,25 @@ class MyTodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final GoRouter router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (BuildContext context, GoRouterState state) => const TodoListPage(),
+        ),
+        GoRoute(
+          path: '/addTodoPaAddTodoPage',
+          builder: (BuildContext context, GoRouterState state) => const AddTodoPage(),
+        ),
+      ],
+    );
+
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TodoListPage(),
+      routerConfig: router,
     );
   }
 }
@@ -45,10 +59,53 @@ class TodoListPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Add your onPressed code here!
+            GoRouter.of(context).go('/addTodoPage');
           },
           child: const Icon(Icons.add),
         ),
+    );
+  }
+}
+
+class AddTodoPage extends StatelessWidget {
+  const AddTodoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Todoを追加'),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Todo',
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    GoRouter.of(context).go('/');
+                  },
+                  child: const Text('追加'),
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    GoRouter.of(context).go('/');
+                  },
+                  child: const Text('キャンセル'),
+                ),
+              ],
+            ),
+          ],
+      ),
+      ),
     );
   }
 }
