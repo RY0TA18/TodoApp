@@ -38,7 +38,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
                 ElevatedButton(
                   onPressed: () {
                     GoRouter.of(context).go('/');
-                    tasks.add(todoText); // Step 2: 入力値をリストに追加
+                    tasks[tasks.length] = todoText; // Step 2: 入力値をリストに追加
                     print(todoText); // Step 3: 入力値を表示
                   },
                   child: const Text('追加'),

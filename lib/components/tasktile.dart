@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
-  final List<String> tasks;
+  final Map<int, String> tasks;
   final int index;
 
   const TaskTile({
@@ -19,7 +19,7 @@ class TaskTile extends StatelessWidget {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('タスク'),
-              content: Text(tasks[index]),
+              content: Text(tasks[index]!),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -33,7 +33,7 @@ class TaskTile extends StatelessWidget {
         );
       },
       child: ListTile(
-        title: Text(tasks[index]),
+        title: Text(tasks[index]!),
       ),
     );
   }
