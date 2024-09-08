@@ -14,6 +14,9 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        var taskId = tasks.keys.elementAt(index); // タスクのキーを取得
+        var taskValue = tasks[taskId]; // タスクの値を取得
+        print('Task ID: $taskId, Task Value: $taskValue'); // コンソールに出力
         showDialog(
           context: context,
           builder: (BuildContext context) {
