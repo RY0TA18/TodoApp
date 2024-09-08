@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_todo/components/tasktile.dart';
 import 'package:my_todo/todo_list.dart';
 
 class TodoListPage extends StatelessWidget {
@@ -16,9 +17,7 @@ class TodoListPage extends StatelessWidget {
         ListView.builder(
           itemCount: tasks.length,
           itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(tasks[index]),
-            );
+            return TaskTile(tasks: tasks, index: index);
           },
         ),
         floatingActionButton: FloatingActionButton(
@@ -30,3 +29,4 @@ class TodoListPage extends StatelessWidget {
     );
   }
 }
+
