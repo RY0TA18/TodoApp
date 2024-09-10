@@ -11,6 +11,7 @@ class TodoListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tasks = ref.watch(todoListProvider); // タスクリストの状態を監視
+    ref.read(todoListProvider.notifier).loadTasks(); // タスクリストを取得
 
     return Scaffold(
       appBar: AppBar(
