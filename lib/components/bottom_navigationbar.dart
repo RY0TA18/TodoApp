@@ -21,19 +21,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
           icon: Icon(Icons.done_all),
           label: '終了済みタスク',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: '設定',
-        ),
       ],
-      currentIndex: currentIndex,
+      currentIndex: currentIndex.clamp(0, 1),
       onTap: (int index) {
         if (index == 0) {
           GoRouter.of(context).go('/');
-        } else if (index == 1) {
+        } 
+        if (index == 1) {
           GoRouter.of(context).go('/doneTodoPage');
-        } else if (index == 2) {
-          GoRouter.of(context).go('/settingsPage');
         }
       },
     );
