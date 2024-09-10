@@ -12,18 +12,4 @@ class TodoService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(taskKey, tasks);
   }
-
-  Future<void> addTask(String task) async {
-    final tasks = await loadTasks();
-    tasks.add(task);
-    await saveTasks(tasks);
-  }
-
-  Future<void> removeTask(int index) async {
-    final tasks = await loadTasks();
-    if (index >= 0 && index < tasks.length) {
-      tasks.removeAt(index);
-      await saveTasks(tasks);
-    }
-  }
 }

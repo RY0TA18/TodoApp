@@ -1,34 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_todo/components/bottom_navigationbar.dart';
-import 'package:my_todo/todo_list.dart';
+import 'package:my_todo/provider/todo_provider.dart';
 
-class TodoListPage extends StatefulWidget {
+
+class TodoListPage extends ConsumerWidget {
   const TodoListPage({super.key});
 
   @override
-  State<TodoListPage> createState() => _TodoListPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tasks = ref.watch(todoListProvider); // タスクリストの状態を監視
 
-class _TodoListPageState extends State<TodoListPage> {
-  List<String> tasks = [];
-  final TodoService todoService = TodoService();
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTasks();
-  }
-
-  Future<void> _loadTasks() async {
-    final loadedTasks = await todoService.loadTasks();
-    setState(() {
-      tasks = loadedTasks;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todoリスト'),
@@ -41,8 +24,7 @@ class _TodoListPageState extends State<TodoListPage> {
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () async {
-                await todoService.removeTask(index);
-                _loadTasks(); // タスクリストを再読み込み
+                ref.read(todoListProvider.notifier).removeTask(index); // タスク削除
               },
             ),
           );
