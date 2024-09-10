@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_todo/components/app_bar.dart';
 import 'package:my_todo/components/bottom_navigationbar.dart';
 import 'package:my_todo/provider/todo_provider.dart';
 
@@ -14,9 +15,7 @@ class TodoListPage extends ConsumerWidget {
     ref.read(todoListProvider.notifier).loadTasks(); // タスクリストを取得
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todoリスト'),
-      ),
+      appBar: const TodoAppBar(),
       body: ListView.builder(
         itemCount: tasks.length,
         itemBuilder: (context, index) {

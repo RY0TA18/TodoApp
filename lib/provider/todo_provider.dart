@@ -25,8 +25,8 @@ class TodoListNotifier extends StateNotifier<List<String>> {
     final tasks = state;
     if (index >= 0 && index < tasks.length) {
       tasks.removeAt(index);
-      state = List.from(tasks); // すぐにUIを更新
       await _todoService.saveTasks(tasks); // 非同期で保存
+      state = tasks;
     }
   }
 }
