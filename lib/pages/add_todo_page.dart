@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_todo/todo_list.dart';
@@ -10,7 +11,8 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
-  String todoText = ''; // Step 1: 入力値を保持する変数
+  String todoText = '';
+  final TodoService todoService = TodoService();
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +22,15 @@ class _AddTodoPageState extends State<AddTodoPage> {
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
-        child:Column(
+        child: Column(
           children: <Widget>[
             TextField(
               decoration: const InputDecoration(
                 labelText: 'Todo',
               ),
-              onChanged: (String value) { // 引数として入力値を受け取る
+              onChanged: (String value) {
                 setState(() {
-                  todoText = value; // 入力値で変数を更新
+                  todoText = value;
                 });
               },
             ),
@@ -37,9 +39,13 @@ class _AddTodoPageState extends State<AddTodoPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    GoRouter.of(context).go('/');
-                    tasks[tasks.length] = todoText; // Step 2: 入力値をリストに追加
-                    print(todoText); // Step 3: 入力値を表示
+                    if (todoText.isNotEmpty) {
+                      todoService.addTask(todoText);
+                      GoRouter.of(context).go('/');
+                      if (kDebugMode) {
+                        print(todoText);
+                      } // 入力値を表示
+                    }
                   },
                   child: const Text('追加'),
                 ),
@@ -53,7 +59,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
               ],
             ),
           ],
-      ),
+        ),
       ),
     );
   }
