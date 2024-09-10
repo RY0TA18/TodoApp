@@ -1,4 +1,4 @@
-import 'package:my_todo/pages/todo_list_page/todo_service.dart';
+import 'package:my_todo/todo_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final todoListProvider = StateNotifierProvider<TodoListNotifier, List<String>>(
