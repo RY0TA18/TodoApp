@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_todo/router.dart';
 
 void main() {
-  runApp(const MyTodoApp());
+  runApp(
+    const ProviderScope(
+      child: MyTodoApp(),
+    ),
+  );
 }
 
 class MyTodoApp extends StatelessWidget {

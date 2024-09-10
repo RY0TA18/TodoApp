@@ -1,18 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_todo/todo_list.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_todo/provider/todo_provider.dart';
 
-class AddTodoPage extends StatefulWidget {
+
+class AddTodoPage extends ConsumerStatefulWidget {
   const AddTodoPage({super.key});
 
   @override
-  State<AddTodoPage> createState() => _AddTodoPageState();
+  ConsumerState<AddTodoPage> createState() => _AddTodoPageState();
 }
 
-class _AddTodoPageState extends State<AddTodoPage> {
+class _AddTodoPageState extends ConsumerState<AddTodoPage> {
   String todoText = '';
-  final TodoService todoService = TodoService();
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +41,11 @@ class _AddTodoPageState extends State<AddTodoPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (todoText.isNotEmpty) {
-                      todoService.addTask(todoText);
+                      ref.read(todoListProvider.notifier).addTask(todoText); // タスクを追加
                       GoRouter.of(context).go('/');
                       if (kDebugMode) {
                         print(todoText);
-                      } // 入力値を表示
+                      }
                     }
                   },
                   child: const Text('追加'),
